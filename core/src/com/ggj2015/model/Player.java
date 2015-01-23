@@ -64,6 +64,7 @@ public class Player {
 
 	public void setX(float x) {
 		this.x = x;
+		sprite.setX(x);
 	}
 
 	public float getY() {
@@ -72,6 +73,7 @@ public class Player {
 
 	public void setY(float y) {
 		this.y = y;
+		sprite.setY(y);
 	}
 
 	public float getVelX() {
