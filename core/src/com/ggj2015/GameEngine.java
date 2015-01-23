@@ -15,7 +15,7 @@ public class GameEngine {
 	private Renderer renderer;
 	
 	private int[][] keysets = {{Keys.UP, Keys.RIGHT, Keys.DOWN, Keys.LEFT, Keys.NUM_1, Keys.NUM_2},
-								{Keys.W, Keys.E, Keys.S, Keys.A, Keys.J, Keys.K}};
+								{Keys.W, Keys.D, Keys.S, Keys.A, Keys.J, Keys.K}};
 	
 	public GameEngine(){
 		level = new Level(4);
@@ -27,8 +27,12 @@ public class GameEngine {
 	
 	public void update(float delta){
 
-		for(int i = 0; i < keysets.length; i++){
-			
+		for(int j = 0; j < keysets.length; j++){
+			for(int i = 0; i < keysets[j].length; i++){
+				if(Gdx.input.isKeyJustPressed(keysets[j][i])){
+					controller.action(j, i);
+				}
+			}
 		}
 		
 		controller.update(delta);

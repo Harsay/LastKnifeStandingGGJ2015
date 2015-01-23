@@ -13,4 +13,8 @@ public class Controller {
 	public void update(float delta){
 				
 	}
+	
+	public void action(int player, int action){
+		
+	}
 }

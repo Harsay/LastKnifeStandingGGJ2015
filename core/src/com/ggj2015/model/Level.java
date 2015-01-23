@@ -1,5 +1,6 @@
 package com.ggj2015.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.ggj2015.MyGame;
@@ -13,7 +14,7 @@ public class Level {
 	
 	public Level(int playerCount){
 
-		player = new ArrayList<Player>();
+		players = new ArrayList<Player>();
 		
 		width = MyGame.WIDTH;
 		height = MyGame.HEIGHT;

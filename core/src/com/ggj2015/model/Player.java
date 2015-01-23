@@ -20,6 +20,7 @@ public class Player {
 		this.x = x;
 		this.y = y;
 		sprite = new Sprite(Assets.playerTexture);
+		sprite.setPosition(x, y);
 	}
 	
 	
