@@ -13,7 +13,7 @@ public class GameEngine {
 	private Renderer renderer;
 	
 	public GameEngine(){
-		level = new Level();
+		level = new Level(4);
 		
 		controller = new Controller(level);
 		renderer = new Renderer(level);
