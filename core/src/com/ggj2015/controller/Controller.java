@@ -1,6 +1,7 @@
 package com.ggj2015.controller;
 
 import com.ggj2015.model.Level;
+import com.ggj2015.model.Player;
 
 public class Controller {
 
@@ -15,6 +16,6 @@ public class Controller {
 	}
 	
 	public void action(int player, int action){
-		
+
 	}
 }

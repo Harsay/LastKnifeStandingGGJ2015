@@ -9,8 +9,8 @@ public class MyGame extends Game {
 	private GameEngine engine;
 	private SpriteBatch batch;
 	
-	public static float WIDTH = 1280;
-	public static float HEIGHT = 720;
+	public static float WIDTH = 640;
+	public static float HEIGHT = 480;
 	
 	@Override
 	public void create() {
