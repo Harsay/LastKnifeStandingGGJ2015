@@ -11,8 +11,6 @@ public class Controller {
 	}
 	
 	public void update(float delta){
-		
-		
-		
+				
 	}
 }
