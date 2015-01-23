@@ -20,7 +20,7 @@ public class Level {
 		height = MyGame.HEIGHT;
 		
 		for(int i = 0; i < playerCount; i++){			
-			players.add(new Player(i < 2 ? width / 2 + i * width : width / 2, i >= 2 ? height / 2 + (i-2) * height : height / 2));
+			players.add(new Player(i < 2 ? width / 4 + i * width / 2 : width / 4, i >= 2 ? height / 4 + (i-2) * height/2 : height / 4));
 		}
 		
 		

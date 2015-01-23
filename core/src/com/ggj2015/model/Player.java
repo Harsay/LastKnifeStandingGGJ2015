@@ -21,6 +21,8 @@ public class Player {
 		this.y = y;
 		sprite = new Sprite(Assets.playerTexture);
 		sprite.setPosition(x, y);
+		
+		System.out.println(x + ", " + y);
 	}
 	
 	
