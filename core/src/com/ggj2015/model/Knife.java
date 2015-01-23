@@ -21,8 +21,6 @@ public class Knife {
 	public void throwIt(){
 		if(owner != null){
 			int dir = owner.getDir();
-			
-			
 			if(dir == 0){
 				velX = -(float) (velAtStart / Math.sqrt(2));
 				velY = -(float) (velAtStart / Math.sqrt(2));
