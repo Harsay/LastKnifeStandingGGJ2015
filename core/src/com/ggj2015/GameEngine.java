@@ -3,6 +3,7 @@ package com.ggj2015;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.ggj2015.controller.Controller;
 import com.ggj2015.model.Level;
 import com.ggj2015.view.Renderer;
@@ -41,8 +42,8 @@ public class GameEngine {
 		controller.update(delta);
 	}
 	
-	public void render(SpriteBatch batch){
-		renderer.render(batch);
+	public void render(SpriteBatch batch, ShapeRenderer shapeRenderer){
+		renderer.render(batch, shapeRenderer);
 	}
 	
 	
