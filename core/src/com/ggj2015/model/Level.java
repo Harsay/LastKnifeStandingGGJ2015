@@ -19,8 +19,11 @@ public class Level {
 		width = MyGame.WIDTH;
 		height = MyGame.HEIGHT;
 		
+		float offPlayerX = 128;
+		
 		for(int i = 0; i < playerCount; i++){			
-			players.add(new Player(i < 2 ? width / 4 + i * width / 2 : width / 4, i >= 2 ? height / 4 + (i-2) * height/2 : height / 4));
+			players.add(new Player(offPlayerX + 128, 128));
+			offPlayerX += 80;
 		}
 		
 		
