@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.ggj2015.Assets;
 
 public class Player {
-	
+
 	private Sprite sprite;
 	
 	private float x;
@@ -20,6 +20,31 @@ public class Player {
 		this.x = x;
 		this.y = y;
 		sprite = new Sprite(Assets.playerTexture);
+	}
+	
+	
+	public Sprite getSprite() {
+		return sprite;
+	}
+
+	public void setSprite(Sprite sprite) {
+		this.sprite = sprite;
+	}
+
+	public float getWidth() {
+		return width;
+	}
+
+	public void setWidth(float width) {
+		this.width = width;
+	}
+
+	public float getHeight() {
+		return height;
+	}
+
+	public void setHeight(float height) {
+		this.height = height;
 	}
 	
 	public int getDir() {
