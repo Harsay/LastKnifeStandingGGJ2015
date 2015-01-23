@@ -15,6 +15,7 @@ public class Controller {
 		for(Player p : level.getPlayers()){
 			p.setX(p.getX()+p.getVelX()*delta);
 			p.setY(p.getY()+p.getVelY()*delta);
+			System.out.println(p.getDir());
 		}
 	}
 	
@@ -29,21 +30,40 @@ public class Controller {
 			
 			if(boolset[0]){
 				p.setVelY(playerSpeed);
+				p.setDir(1);
 			}
 			if(boolset[1]){
 				p.setVelX(playerSpeed);
+				p.setDir(5);
 			}
 			
 			if(boolset[2]){
 				p.setVelY(-playerSpeed);
+				p.setDir(7);
 			}
 			if(boolset[3]){
 				p.setVelX(-playerSpeed);
+				p.setDir(3);
 			}
 			
 			if(Math.abs(p.getVelX()) > 0 && Math.abs(p.getVelY()) > 0){
 				p.setVelX(p.getVelX() / (float)Math.sqrt(2));
 				p.setVelY(p.getVelY() / (float)Math.sqrt(2));
+				
+				if(p.getVelX() < 0){
+					if(p.getVelY() > 0){
+						p.setDir(0);						
+					}else{
+						p.setDir(6);
+					}
+				}else{
+					if(p.getVelY() > 0){
+						p.setDir(2);						
+					}else{
+						p.setDir(8);
+					}
+				}
+				
 			}
 			
 		}
