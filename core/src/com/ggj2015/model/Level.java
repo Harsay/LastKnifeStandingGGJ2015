@@ -1,10 +1,14 @@
 package com.ggj2015.model;
 
-import java.util.List;
-
 public class Level {
 
-	private List<Enemy> enemies;
+
+	private Player player;
+	
+	public Level(){
+		player = new Player();
+	}
+	
 	
 	
 	

@@ -6,8 +6,13 @@ public class Controller {
 
 	private Level level;
 	
+	public Controller(Level level){
+		this.level = level;
+	}
 	
 	public void update(float delta){
+		
+		
 		
 	}
 }
