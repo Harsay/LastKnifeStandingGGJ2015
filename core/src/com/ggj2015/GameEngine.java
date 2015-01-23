@@ -16,7 +16,9 @@ public class GameEngine {
 	private Renderer renderer;
 	
 	private int[][] keysets = {{Keys.UP, Keys.RIGHT, Keys.DOWN, Keys.LEFT, Keys.NUM_1, Keys.NUM_2},
-								{Keys.W, Keys.D, Keys.S, Keys.A, Keys.J, Keys.K}};
+			{Keys.W, Keys.D, Keys.S, Keys.A, Keys.J, Keys.K},
+			{Keys.W, Keys.D, Keys.S, Keys.A, Keys.J, Keys.K},
+			{Keys.W, Keys.D, Keys.S, Keys.A, Keys.J, Keys.K}};
 	
 	public GameEngine(){
 		level = new Level(4);

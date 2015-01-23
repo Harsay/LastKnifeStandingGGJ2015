@@ -12,8 +12,9 @@ public class Level {
 	private float width;
 	private float height;
 	
+	private Knife knife;
+	
 	public Level(int playerCount){
-
 		players = new ArrayList<Player>();
 		
 		width = MyGame.WIDTH;
@@ -27,8 +28,14 @@ public class Level {
 			else if(i == 3) player = new Player(width, height);
 			players.add(player);
 		}
+
+		knife = new Knife(width / 2, height / 2);
+		knife.setOwner(players.get(0));
 		
-		
+	}
+	
+	public Knife getKnife(){
+		return knife;
 	}
 	
 	public List<Player> getPlayers() {

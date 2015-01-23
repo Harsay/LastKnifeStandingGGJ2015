@@ -10,7 +10,7 @@ public class Knife {
 	private float x, y;
 	private float velX, velY;
 	
-	private float velAtStart;
+	private float velAtStart = 100;
 	
 	private Player owner;
 	
@@ -20,19 +20,23 @@ public class Knife {
 		sprite = new Sprite(Assets.knifeTexture);
 	}
 	
+	public void setOwner(Player owner){
+		this.owner = owner;
+	}
+	
 	public void throwIt(){
 		if(owner != null){
 			int dir = owner.getDir();
 			
 			if(dir == 0){
 				velX = -(float) (velAtStart / Math.sqrt(2));
-				velY = -(float) (velAtStart / Math.sqrt(2));
+				velY = (float) (velAtStart / Math.sqrt(2));
 			}else if(dir == 1){
 				velX = 0;
 				velY = velAtStart;
 			}else if(dir == 2){
 				velX = (float) (velAtStart / Math.sqrt(2));
-				velY = -(float) (velAtStart / Math.sqrt(2));
+				velY = (float) (velAtStart / Math.sqrt(2));
 			}else if(dir == 3){
 				velX = -velAtStart;
 				velY = 0;
@@ -43,14 +47,16 @@ public class Knife {
 				velY = 0;
 			}else if(dir == 6){
 				velX = -(float) (velAtStart / Math.sqrt(2));
-				velY = (float) (velAtStart / Math.sqrt(2));
+				velY = -(float) (velAtStart / Math.sqrt(2));
 			}else if(dir == 7){
 				velX = 0;
-				velY = velAtStart;
+				velY = -velAtStart;
 			}else if(dir == 8){
 				velX = (float) (velAtStart / Math.sqrt(2));
-				velY = (float) (velAtStart / Math.sqrt(2));
+				velY = -(float) (velAtStart / Math.sqrt(2));
 			}
+			
+			owner = null;
 		}
 	}
 	
@@ -60,6 +66,7 @@ public class Knife {
 
 	public void setX(float x) {
 		this.x = x;
+		sprite.setX(x);
 	}
 
 	public float getY() {
@@ -68,6 +75,7 @@ public class Knife {
 
 	public void setY(float y) {
 		this.y = y;
+		sprite.setY(y);
 	}
 
 	public float getVelX() {
@@ -86,7 +94,13 @@ public class Knife {
 		this.velY = velY;
 	}
 
+	public Sprite getSprite(){
+		return sprite;
+	}
 	
+	public Player getOwner(){
+		return owner;
+	}
 	
 	
 }

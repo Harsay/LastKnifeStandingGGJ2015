@@ -43,6 +43,9 @@ public class Renderer {
 		for(Player p : level.getPlayers()) {
 			p.getSprite().draw(batch);
 		}
+		if(level.getKnife() != null){
+			level.getKnife().getSprite().draw(batch);
+		}
 		batch.end();
 		
 	}

@@ -1,5 +1,6 @@
 package com.ggj2015.controller;
 
+import com.ggj2015.model.Knife;
 import com.ggj2015.model.Level;
 import com.ggj2015.model.Player;
 
@@ -21,12 +22,29 @@ public class Controller {
 			
 			if(p.getY() < 0) p.setY(0);
 			else if(p.getY()+p.getHeight() > level.getHeight()) p.setY(level.getHeight()-p.getHeight());
+			
 		}
+
+		Knife k = level.getKnife();
+		
+		if(k.getOwner() != null){
+			k.setX(k.getOwner().getX());
+			k.setY(k.getOwner().getY());			
+		}else{
+			k.setX(k.getX()+k.getVelX()*delta);
+			k.setY(k.getY()+k.getVelY()*delta);
+		}
+		
 	}
 	
 	public void action(int player, boolean[] boolset){
 		if(level.getPlayers().size() >= player+1){
 			Player p = level.getPlayers().get(player);
+			
+			
+			if(boolset[4]){
+				level.getKnife().throwIt();
+			}
 			
 			float playerSpeed = 300f;
 			
