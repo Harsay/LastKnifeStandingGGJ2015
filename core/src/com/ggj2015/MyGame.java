@@ -11,8 +11,8 @@ public class MyGame extends Game {
 	private SpriteBatch batch;
 	private ShapeRenderer shapeRenderer;
 	
-	public static float WIDTH = 640;
-	public static float HEIGHT = 480;
+	public static float WIDTH = 800;
+	public static float HEIGHT = 600;
 	
 	@Override
 	public void create() {
