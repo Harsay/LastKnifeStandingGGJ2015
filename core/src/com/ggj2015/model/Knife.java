@@ -20,7 +20,7 @@ public class Knife {
 	
 	public void throwIt(){
 		if(owner != null){
-			int dir = owner.dir;
+			int dir = owner.getDir();
 			
 			
 			if(dir == 0){
