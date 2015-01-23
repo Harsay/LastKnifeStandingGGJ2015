@@ -11,10 +11,12 @@ public class Controller {
 	}
 	
 	public void update(float delta){
-				
+		
 	}
 	
-	public void action(int player, int action){
-		
+	public void action(int player, boolean[] boolset){
+		if(boolset[0] && boolset[1]){
+			
+		}
 	}
 }

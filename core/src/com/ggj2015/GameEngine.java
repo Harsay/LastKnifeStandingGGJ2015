@@ -28,11 +28,14 @@ public class GameEngine {
 	public void update(float delta){
 
 		for(int j = 0; j < keysets.length; j++){
+			boolean[] boolset = new boolean[6];
+			
 			for(int i = 0; i < keysets[j].length; i++){
-				if(Gdx.input.isKeyJustPressed(keysets[j][i])){
-					controller.action(j, i);
+				if(Gdx.input.isKeyPressed(keysets[j][i])){
+					boolset[i] = true;
 				}
 			}
+			controller.action(j, boolset);
 		}
 		
 		controller.update(delta);
