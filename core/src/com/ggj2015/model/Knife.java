@@ -1,6 +1,7 @@
 package com.ggj2015.model;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.ggj2015.Assets;
 
 public class Knife {
 
@@ -16,6 +17,7 @@ public class Knife {
 	public Knife(float x, float y){
 		this.x = x;
 		this.y = y;
+		sprite = new Sprite(Assets.knifeTexture);
 	}
 	
 	public void throwIt(){

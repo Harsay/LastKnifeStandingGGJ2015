@@ -1,6 +1,7 @@
 package com.ggj2015.model;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.ggj2015.Assets;
 
 public class Player {
 	
@@ -18,7 +19,7 @@ public class Player {
 	public Player(float x, float y) {
 		this.x = x;
 		this.y = y;
-		// sprite = Assets.playerSprite;
+		sprite = new Sprite(Assets.playerTexture);
 	}
 	
 	public int getDir() {
