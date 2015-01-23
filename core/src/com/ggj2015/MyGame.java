@@ -15,7 +15,7 @@ public class MyGame extends Game {
 	@Override
 	public void create() {
 		System.out.println("");
-		
+		Assets.loadGraphics();
 		engine = new GameEngine();
 		batch = new SpriteBatch();
 	}
