@@ -13,6 +13,8 @@ public class Level {
 	
 	public Level(int playerCount){
 
+		player = new ArrayList<Player>();
+		
 		width = MyGame.WIDTH;
 		height = MyGame.HEIGHT;
 		
