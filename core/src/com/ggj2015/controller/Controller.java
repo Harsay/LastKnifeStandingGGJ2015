@@ -15,6 +15,12 @@ public class Controller {
 		for(Player p : level.getPlayers()){
 			p.setX(p.getX()+p.getVelX()*delta);
 			p.setY(p.getY()+p.getVelY()*delta);
+			
+			if(p.getX() < 0) p.setX(0);
+			else if(p.getX()+p.getWidth() > level.getWidth()) p.setX(level.getWidth()-p.getWidth());
+			
+			if(p.getY() < 0) p.setY(0);
+			else if(p.getY()+p.getHeight() > level.getHeight()) p.setY(level.getHeight()-p.getHeight());
 		}
 	}
 	
