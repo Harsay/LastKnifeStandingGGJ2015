@@ -25,6 +25,10 @@ public class Level {
 		
 	}
 	
+	public List<Player> getPlayers() {
+		return players;
+	}
+	
 	
 	
 	
