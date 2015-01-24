@@ -15,8 +15,10 @@ public class Assets {
 	public static TextureRegion[] playerWalkingRightWithKnife = new TextureRegion[4];
 	public static TextureRegion[] playerWalkingLeftWithKnife = new TextureRegion[4];
 	
-	public static TextureRegion playerStabbed;
-	public static TextureRegion playerDead;
+	public static TextureRegion playerStabbedRight;
+	public static TextureRegion playerDeadRight;
+	public static TextureRegion playerStabbedLeft;
+	public static TextureRegion playerDeadLeft;
 	
 	public static Texture knifeTexture;
 	public static BitmapFont font;
@@ -55,9 +57,14 @@ public class Assets {
 		playerWalkingLeftWithKnife[3].flip(true, false);
 
 		
-		playerStabbed = loadTexture("ded");
-		playerDead = loadTexture("ded-wok");
+		playerStabbedRight = loadTexture("ded");
+		playerDeadRight = loadTexture("ded-wok");
 
+		playerStabbedLeft = loadTexture("ded");
+		playerStabbedLeft.flip(true, false);
+		playerDeadLeft = loadTexture("ded-wok");
+		playerDeadLeft.flip(true, false);
+		
 		knifeTexture = new Texture(Gdx.files.internal("knife.png"));
 		
 		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("8-BIT WONDER.TTF"));

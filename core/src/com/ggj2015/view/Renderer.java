@@ -12,6 +12,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.ggj2015.Assets;
 import com.ggj2015.MyGame;
+import com.ggj2015.model.BackgroundText;
 import com.ggj2015.model.GameColors;
 import com.ggj2015.model.Level;
 import com.ggj2015.model.Player;
@@ -22,6 +23,7 @@ public class Renderer {
 	private OrthographicCamera camera;
 	private Viewport viewport;
 	private GameColors gameColors;
+	private BackgroundText bgText;
 
 
 	public Renderer(Level level){
@@ -30,6 +32,7 @@ public class Renderer {
 		viewport = new FitViewport(MyGame.WIDTH, MyGame.HEIGHT, camera);
 		camera.setToOrtho(false, MyGame.WIDTH, MyGame.HEIGHT);
 		gameColors = level.gameColors;
+		bgText = level.bgText;
 	}
 	
 	public void render(SpriteBatch batch, ShapeRenderer shapeRenderer){
@@ -45,12 +48,10 @@ public class Renderer {
         shapeRenderer.end();
         
 		batch.setProjectionMatrix(camera.combined);
+		
 		batch.begin();
-		if(level.finished) {
-			Assets.font.setColor(gameColors.getTxtColor());
-			TextBounds bounds = Assets.font.getBounds("Player "+level.winner+" wins");
-			Assets.font.draw(batch, "Player "+level.winner+" wins", MyGame.WIDTH/2-bounds.width/2, MyGame.HEIGHT/2+bounds.height/2);
-		}
+		Assets.font.setColor(gameColors.getTxtColor());
+		bgText.draw(batch);
 		for(Player p : level.getPlayers()) {
 			p.getSprite().setColor(gameColors.getPlrColor());
 			p.getSprite().draw(batch);

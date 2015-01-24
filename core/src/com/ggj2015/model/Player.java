@@ -17,16 +17,20 @@ public class Player {
 	private float velY = 0;
 	private int dir = 0;
 	
+	public int number = 0;
+	
 	public boolean alive = true;
 	public boolean throwing = false;
 	public boolean tryingToPickUp = false;
+	public boolean deadLeft = false;
 	
 	private float width = 80;
 	private float height = 120;
 	
-	public Player(float x, float y) {
+	public Player(float x, float y, int number) {
 		this.x = x;
 		this.y = y;
+		this.number = number;
 		animation = new Animation(0.08f, Assets.playerWalkingRight);
 		sprite = new Sprite(Assets.playerWalkingRight[0]);
 		sprite.setPosition(x, y);	

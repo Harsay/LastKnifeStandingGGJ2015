@@ -8,6 +8,8 @@ import com.ggj2015.model.Level;
 import com.ggj2015.model.Player;
 
 public class Controller {
+	
+	//todo: bug, zly sprite po wyjeciu noza
 
 	private Level level;
 	
@@ -16,13 +18,14 @@ public class Controller {
 	}
 	
 	public void update(float delta){
-		//if(level.finished) return;
 		Knife k = level.getKnife();
 		
 		for(Player p : level.getPlayers()){
 			if(p.alive) {
-				p.setX(p.getX()+p.getVelX()*delta);
-				p.setY(p.getY()+p.getVelY()*delta);
+				if(level.countdown == 0) {
+					p.setX(p.getX()+p.getVelX()*delta);
+					p.setY(p.getY()+p.getVelY()*delta);
+				}
 				if(p.getX() < 0) p.setX(0);
 				else if(p.getX()+p.getWidth() > level.getWidth()) p.setX(level.getWidth()-p.getWidth());
 				
@@ -35,19 +38,24 @@ public class Controller {
 						k.setVelX(0);
 						k.setVelY(0);
 						p.getSprite().setRegion(Assets.playerWalkingRightWithKnife[0]);
+						level.bgText.text = "Player "+p.number+" \npicked up\nthe knife";
 					}
 					else {
+						p.deadLeft = k.getX() <= p.getX()+p.getWidth()/2;
+						if(p.deadLeft) p.getSprite().setRegion(Assets.playerStabbedLeft);
+						else p.getSprite().setRegion(Assets.playerStabbedRight);
 						k.setOwner(p);
 						k.setVelX(0);
 						k.setVelY(0);
 						k.timeInAir = 0;
 						p.alive = false;
-						p.getSprite().setRegion(Assets.playerStabbed);
+						level.bgText.text = "Player "+p.number+" \nhas been \nkilled";
 						level.deadCount++;
 						if(level.deadCount == level.getPlayers().size()-1) {
 							level.finished = true;
 							for(int i=0; i<level.getPlayers().size(); i++) {
 								if(level.getPlayers().get(i).alive) level.winner = i+1;
+								level.bgText.text = "Player "+level.winner+" wins";
 							}
 							Timer.schedule(new Task() {
 
@@ -71,12 +79,14 @@ public class Controller {
 						k.setOwner(p);
 						p.getSprite().setRegion(Assets.playerWalkingRightWithKnife[0]);
 						p.tryingToPickUp = false;
-						o.getSprite().setRegion(Assets.playerDead);
+						if(o.deadLeft) o.getSprite().setRegion(Assets.playerDeadLeft);
+						else o.getSprite().setRegion(Assets.playerDeadRight);
+						level.bgText.text = "Player "+p.number+" \npulled out \nthe knife";
 					}
 				}
 				
 				// animation
-				if(p.alive) {
+				if(p.alive && level.countdown == 0) {
 					if(p.getVelX() > 0) {
 						if(k.getOwner() != p) p.setAnimation(Assets.walkingRightAnim);
 						else p.setAnimation(Assets.walkingRightWithKnifeAnim);
@@ -125,7 +135,7 @@ public class Controller {
 		if(level.getPlayers().size() >= player+1){
 			Player p = level.getPlayers().get(player);
 			
-			if(boolset[4] && p.alive && level.getKnife().getOwner() == p){
+			if(boolset[4] && p.alive && !level.finished && level.getKnife().getOwner() == p){
 				level.getKnife().throwIt();
 			}
 			
