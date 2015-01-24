@@ -35,8 +35,8 @@ public class Knife {
 			int dir = owner.getDir();
 			owner.throwing = true;
 			
-			setX(owner.getCenterX());
-			setY(owner.getCenterY());
+			setX(owner.getCenterX()-width/2);
+			setY(owner.getCenterY()-height/2);
 			
 			if(dir == 0){
 				velX = -(float) (velAtStart / Math.sqrt(2));

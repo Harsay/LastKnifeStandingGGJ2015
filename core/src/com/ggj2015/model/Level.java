@@ -33,8 +33,8 @@ public class Level {
 			players.add(player);
 		}
 
-		knife = new Knife(width / 2, height / 2);
-		knife.setOwner(players.get(0));
+		knife = new Knife(width / 2-45, height / 2-45);
+		//knife.setOwner(players.get(0));
 		
 	}
 	
