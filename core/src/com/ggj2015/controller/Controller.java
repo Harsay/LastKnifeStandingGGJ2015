@@ -16,7 +16,7 @@ public class Controller {
 	}
 	
 	public void update(float delta){
-		if(level.finished) return;
+		//if(level.finished) return;
 		Knife k = level.getKnife();
 		
 		for(Player p : level.getPlayers()){
@@ -71,22 +71,23 @@ public class Controller {
 				
 				// animation
 				
-				
-				if(p.getVelX() > 0) {
-					if(k.getOwner() != p) p.setAnimation(Assets.walkingRightAnim);
-					else p.setAnimation(Assets.walkingRightWithKnifeAnim);
-				}
-				else if(p.getVelX() < 0) {
-					if(k.getOwner() != p) p.setAnimation(Assets.walkingLeftAnim);
-					else p.setAnimation(Assets.walkingLeftWithKnifeAnim);
-				}
-				
-				if(p.getVelX() != 0 || p.getVelY() != 0) {
-					p.animTime += delta;
-					p.getSprite().setRegion(p.animation.getKeyFrame(p.animTime, true));
-				}
-				else {
-					p.getSprite().setRegion(p.animation.getKeyFrames()[0]);
+				if(p.alive) {
+					if(p.getVelX() > 0) {
+						if(k.getOwner() != p) p.setAnimation(Assets.walkingRightAnim);
+						else p.setAnimation(Assets.walkingRightWithKnifeAnim);
+					}
+					else if(p.getVelX() < 0) {
+						if(k.getOwner() != p) p.setAnimation(Assets.walkingLeftAnim);
+						else p.setAnimation(Assets.walkingLeftWithKnifeAnim);
+					}
+					
+					if(p.getVelX() != 0 || p.getVelY() != 0) {
+						p.animTime += delta;
+						p.getSprite().setRegion(p.animation.getKeyFrame(p.animTime, true));
+					}
+					else {
+						p.getSprite().setRegion(p.animation.getKeyFrames()[0]);
+					}
 				}
 			}
 		}

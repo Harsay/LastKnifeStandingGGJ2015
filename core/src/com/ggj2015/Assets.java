@@ -12,8 +12,8 @@ public class Assets {
 	
 	public static TextureRegion[] playerWalkingRight = new TextureRegion[3];
 	public static TextureRegion[] playerWalkingLeft = new TextureRegion[3];
-	public static TextureRegion[] playerWalkingRightWithKnife = new TextureRegion[3];
-	public static TextureRegion[] playerWalkingLeftWithKnife = new TextureRegion[3];
+	public static TextureRegion[] playerWalkingRightWithKnife = new TextureRegion[4];
+	public static TextureRegion[] playerWalkingLeftWithKnife = new TextureRegion[4];
 	
 	public static TextureRegion playerStabbed;
 	public static TextureRegion playerDead;
@@ -41,14 +41,19 @@ public class Assets {
 
 		playerWalkingRightWithKnife[0] = loadTexture("run_1");
 		playerWalkingRightWithKnife[1] = loadTexture("run_2_wk");
-		playerWalkingRightWithKnife[2] = loadTexture("run_3_wk");
+		playerWalkingRightWithKnife[2] = loadTexture("run_1");
+		playerWalkingRightWithKnife[3] = loadTexture("run_3_wk");
+
 		
 		playerWalkingLeftWithKnife[0] = loadTexture("run_1");
 		playerWalkingLeftWithKnife[0].flip(true, false);
 		playerWalkingLeftWithKnife[1] = loadTexture("run_2_wk");
 		playerWalkingLeftWithKnife[1].flip(true, false);
-		playerWalkingLeftWithKnife[2] = loadTexture("run_3_wk");
+		playerWalkingLeftWithKnife[2] = loadTexture("run_1");
 		playerWalkingLeftWithKnife[2].flip(true, false);
+		playerWalkingLeftWithKnife[3] = loadTexture("run_3_wk");
+		playerWalkingLeftWithKnife[3].flip(true, false);
+
 		
 		playerStabbed = loadTexture("ded");
 		playerDead = loadTexture("ded-wok");
@@ -63,8 +68,8 @@ public class Assets {
 		
 		walkingRightAnim = new Animation(0.08f, playerWalkingRight);
 		walkingLeftAnim = new Animation(0.08f, playerWalkingLeft);
-		walkingRightWithKnifeAnim = new Animation(0.08f, playerWalkingRightWithKnife);
-		walkingLeftWithKnifeAnim = new Animation(0.08f, playerWalkingLeftWithKnife);
+		walkingRightWithKnifeAnim = new Animation(0.1f, playerWalkingRightWithKnife);
+		walkingLeftWithKnifeAnim = new Animation(0.1f, playerWalkingLeftWithKnife);
 	}
 	
 	public static TextureRegion loadTexture(String name) {

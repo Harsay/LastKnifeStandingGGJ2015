@@ -14,7 +14,7 @@ public class Knife {
 	private float width, height;
 	private float friction = 0.98f;
 	
-	private float velAtStart = 1000;
+	private float velAtStart = 1500;
 	
 	private Player owner;
 	
