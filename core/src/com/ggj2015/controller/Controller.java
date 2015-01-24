@@ -90,7 +90,7 @@ public class Controller {
 				level.getKnife().throwIt();
 			}
 			
-			float playerSpeed = 300f;
+			float playerSpeed = 420f;
 			
 			p.setVelX(0);
 			p.setVelY(0);
