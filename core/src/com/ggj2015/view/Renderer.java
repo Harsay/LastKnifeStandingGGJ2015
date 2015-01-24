@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont.TextBounds;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
@@ -26,6 +28,8 @@ public class Renderer {
 	private GameColors gameColors;
 	private BackgroundText bgText;
 	private static Color foregroundColor;
+	
+	private Sprite menuSprite;
 
 
 	public Renderer(Level level){
@@ -36,6 +40,7 @@ public class Renderer {
 		gameColors = level.gameColors;
 		bgText = level.bgText;
 		foregroundColor = new Color(1, 1, 1, 0);
+		menuSprite = new Sprite(Assets.knifeTexture);
 		glow(0.3f);
 	}
 	
@@ -54,17 +59,35 @@ public class Renderer {
 		batch.setProjectionMatrix(camera.combined);
 		
 		batch.begin();
-		if(level.maxSpawns > 0) Assets.fontSmall.setColor(gameColors.getTxtColor());
-		else Assets.fontSmall.setColor(Color.WHITE);
-		bgText.draw(batch);
-		if(level.maxSpawns > 0) {
-			for(Player p : level.getPlayers()) {
-				p.getSprite().setColor(gameColors.getPlrColor());
-				p.getSprite().draw(batch);
-			}
-			if(level.getKnife() != null && level.getKnife().getOwner() == null){
-				level.getKnife().getSprite().setColor(gameColors.getPlrColor());
-				level.getKnife().getSprite().draw(batch);
+		if(MyGame.menu) {
+			menuSprite.setColor(gameColors.getPlrColor());
+			menuSprite.setScale(15);
+			menuSprite.setPosition(500, 100);
+			menuSprite.rotate(60*Gdx.graphics.getDeltaTime());
+			menuSprite.draw(batch);
+			Assets.font.setColor(gameColors.getTxtColor());
+			TextBounds bounds = Assets.font.getBounds("the last");
+			Assets.font.draw(batch, "the last", MyGame.WIDTH/2-bounds.width/2, 500);
+			bounds = Assets.font.getBounds("knife");
+			Assets.font.draw(batch, "knife", MyGame.WIDTH/2-bounds.width/2, 400);
+			bounds = Assets.font.getBounds("standing");
+			Assets.font.draw(batch, "standing", MyGame.WIDTH/2-bounds.width/2, 300);
+			Assets.fontSmaller.setColor(1, 1, 1, 1);
+			Assets.fontSmaller.draw(batch, "PRESS ENTER TO START", 175, 100);
+		}
+		else {
+			if(level.maxSpawns > 0) Assets.fontSmall.setColor(gameColors.getTxtColor());
+			else Assets.fontSmall.setColor(Color.WHITE);
+			bgText.draw(batch);
+			if(level.maxSpawns > 0) {
+				for(Player p : level.getPlayers()) {
+					p.getSprite().setColor(gameColors.getPlrColor());
+					p.getSprite().draw(batch);
+				}
+				if(level.getKnife() != null && level.getKnife().getOwner() == null){
+					level.getKnife().getSprite().setColor(gameColors.getPlrColor());
+					level.getKnife().getSprite().draw(batch);
+				}
 			}
 		}
 		batch.end();

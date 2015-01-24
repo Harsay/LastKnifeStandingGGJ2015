@@ -13,6 +13,7 @@ public class MyGame extends Game {
 	
 	public static float WIDTH = 800;
 	public static float HEIGHT = 600;
+	public static boolean menu = true;
 	
 	@Override
 	public void create() {

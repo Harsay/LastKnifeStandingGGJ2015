@@ -23,8 +23,9 @@ public class Level {
 	public int winner = 0;
 	public int countdown = 4;
 	public boolean finished = false;
+	public int playerCount = 0;
 	
-	public int maxSpawns = 3;
+	public int maxSpawns = 11; // max 10 games (11 = 10 lel)
 	
 	public GameColors gameColors;
 	public BackgroundText bgText;
@@ -34,19 +35,17 @@ public class Level {
 		
 		width = MyGame.WIDTH;
 		height = MyGame.HEIGHT;
+		this.playerCount = playerCount;
 		
 		gameColors = new GameColors();
-		bgText = new BackgroundText();
-		
-		spawnPlayers(playerCount);
-		spawnKnife();		
+		bgText = new BackgroundText();	
 	}
 	
 	public void spawnKnife() {
 		knife = new Knife(width / 2-45, height / 2-45);
 	}
 	
-	public void spawnPlayers(int playerCount) {
+	public void spawnPlayers() {
 		deadCount = 0;
 		maxSpawns--;
 		players.clear();

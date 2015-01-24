@@ -1,15 +1,18 @@
 package com.ggj2015.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.Timer.Task;
 import com.ggj2015.Assets;
+import com.ggj2015.MyGame;
 import com.ggj2015.model.Knife;
 import com.ggj2015.model.Level;
 import com.ggj2015.model.Player;
 import com.ggj2015.view.Renderer;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Controller {
 	
@@ -21,6 +24,18 @@ public class Controller {
 	
 	public void update(float delta){
 		Knife k = level.getKnife();
+		
+		if(MyGame.menu) {
+			
+			if(Gdx.input.isKeyJustPressed(Keys.ENTER)) {
+				level.spawnPlayers();
+				level.spawnKnife();
+				Renderer.glow(0.1f);
+				MyGame.menu = false;
+			}
+		
+			return;
+		}
 		
 		if(level.maxSpawns == 0) {
 			level.bgText.text = "GAME OVER\n\n";
@@ -86,7 +101,7 @@ public class Controller {
 								@Override
 								public void run() {
 									level.finished = false;
-									level.spawnPlayers(level.deadCount+1);
+									level.spawnPlayers();
 									level.spawnKnife();
 									level.gameColors.setColors();
 									Renderer.glow(0.1f);

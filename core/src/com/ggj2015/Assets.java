@@ -23,7 +23,8 @@ public class Assets {
 	public static Texture knifeTexture;
 	public static BitmapFont font;
 	public static BitmapFont fontSmall;
-	
+	public static BitmapFont fontSmaller;
+
 	public static Animation walkingRightAnim;
 	public static Animation walkingLeftAnim;
 	public static Animation walkingRightWithKnifeAnim;
@@ -74,6 +75,8 @@ public class Assets {
 		font = generator.generateFont(parameter);
 		parameter.size = 48;
 		fontSmall = generator.generateFont(parameter);
+		parameter.size = 24;
+		fontSmaller = generator.generateFont(parameter);
 		generator.dispose();
 		
 		walkingRightAnim = new Animation(0.08f, playerWalkingRight);
