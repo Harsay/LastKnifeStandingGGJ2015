@@ -14,6 +14,7 @@ public class Player {
 	private float velY = 0;
 	private int dir = 0;
 	
+	public boolean alive = true;
 	public boolean throwing = false;
 	
 	private float width = 80;
@@ -23,9 +24,7 @@ public class Player {
 		this.x = x;
 		this.y = y;
 		sprite = new Sprite(Assets.playerTexture);
-		sprite.setPosition(x, y);
-		
-		//System.out.println(x + ", " + y);
+		sprite.setPosition(x, y);		
 	}
 	
 	public boolean collides(Knife knife) {

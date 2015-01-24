@@ -16,17 +16,23 @@ public class Controller {
 		Knife k = level.getKnife();
 		
 		for(Player p : level.getPlayers()){
-			p.setX(p.getX()+p.getVelX()*delta);
-			p.setY(p.getY()+p.getVelY()*delta);
-			//System.out.println(p.getDir());
-			if(p.getX() < 0) p.setX(0);
-			else if(p.getX()+p.getWidth() > level.getWidth()) p.setX(level.getWidth()-p.getWidth());
-			
-			if(p.getY() < 0) p.setY(0);
-			else if(p.getY()+p.getHeight() > level.getHeight()) p.setY(level.getHeight()-p.getHeight());
-			
-			if(k.getOwner() == null && p.collides(level.getKnife())) {
-				System.out.println("Plejer ded");
+			if(p.alive) {
+				p.setX(p.getX()+p.getVelX()*delta);
+				p.setY(p.getY()+p.getVelY()*delta);
+				//System.out.println(p.getDir());
+				if(p.getX() < 0) p.setX(0);
+				else if(p.getX()+p.getWidth() > level.getWidth()) p.setX(level.getWidth()-p.getWidth());
+				
+				if(p.getY() < 0) p.setY(0);
+				else if(p.getY()+p.getHeight() > level.getHeight()) p.setY(level.getHeight()-p.getHeight());
+				
+				if(k.getOwner() == null && p.collides(k)) {
+					if(k.getVelX() == 0 && k.getVelY() == 0) k.setOwner(p);
+					else {
+						k.setOwner(p);
+						p.alive = false;
+					}
+				}
 			}
 		}
 
@@ -45,8 +51,6 @@ public class Controller {
 		
 		if(k.getY() > level.getHeight()) k.setY(-k.getHeight());
 		else if(k.getY()+k.getHeight() < 0) k.setY(level.getHeight());
-		
-		
 	}
 	
 	public void action(int player, boolean[] boolset){
