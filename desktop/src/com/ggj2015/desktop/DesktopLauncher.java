@@ -7,8 +7,10 @@ import com.ggj2015.MyGame;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		config.width = 960;
-		config.height = 540;
+		config.width = 800;
+		config.height = 600;
+		config.title= "The last knife standing";
+		config.fullscreen = false;
 		new LwjglApplication(new MyGame(), config);
 	}
 }

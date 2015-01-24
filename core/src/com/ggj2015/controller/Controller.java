@@ -115,12 +115,15 @@ public class Controller {
 			k.setY(k.getY()+k.getVelY()*delta);
 			k.setVelX(k.getVelX()*k.getFriction());
 			k.setVelY(k.getVelY()*k.getFriction());
-			if(k.getVelY() != 0 || k.getVelX() != 0) k.getSprite().rotate(720*delta);
-			k.timeInAir += delta;
-			if(k.timeInAir >= k.timeToStop) {
-				k.timeInAir = 0;
-				k.setVelX(0);
-				k.setVelY(0);
+			if(k.getVelY() != 0 || k.getVelX() != 0) {
+				k.getSprite().rotate(720*delta);
+				
+				k.timeInAir += delta;
+				if(k.timeInAir >= k.timeToStop) {
+					k.timeInAir = 0;
+					k.setVelX(0);
+					k.setVelY(0);
+				}
 			}
 		}
 		
