@@ -54,25 +54,30 @@ public class Renderer {
 		batch.setProjectionMatrix(camera.combined);
 		
 		batch.begin();
-		Assets.font.setColor(gameColors.getTxtColor());
+		if(level.maxSpawns > 0) Assets.fontSmall.setColor(gameColors.getTxtColor());
+		else Assets.fontSmall.setColor(Color.WHITE);
 		bgText.draw(batch);
-		for(Player p : level.getPlayers()) {
-			p.getSprite().setColor(gameColors.getPlrColor());
-			p.getSprite().draw(batch);
-		}
-		if(level.getKnife() != null && level.getKnife().getOwner() == null){
-			level.getKnife().getSprite().setColor(gameColors.getPlrColor());
-			level.getKnife().getSprite().draw(batch);
+		if(level.maxSpawns > 0) {
+			for(Player p : level.getPlayers()) {
+				p.getSprite().setColor(gameColors.getPlrColor());
+				p.getSprite().draw(batch);
+			}
+			if(level.getKnife() != null && level.getKnife().getOwner() == null){
+				level.getKnife().getSprite().setColor(gameColors.getPlrColor());
+				level.getKnife().getSprite().draw(batch);
+			}
 		}
 		batch.end();
 		
-		Gdx.gl.glEnable(GL20.GL_BLEND);
-	    Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
-        shapeRenderer.begin(ShapeType.Filled);
-        shapeRenderer.setColor(foregroundColor);
-        shapeRenderer.rect(0, 0, level.getWidth(), level.getHeight());
-        shapeRenderer.end();
-	    Gdx.gl.glDisable(GL20.GL_BLEND);
+		if(level.maxSpawns > 0) {
+			Gdx.gl.glEnable(GL20.GL_BLEND);
+		    Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+	        shapeRenderer.begin(ShapeType.Filled);
+	        shapeRenderer.setColor(foregroundColor);
+	        shapeRenderer.rect(0, 0, level.getWidth(), level.getHeight());
+	        shapeRenderer.end();
+		    Gdx.gl.glDisable(GL20.GL_BLEND);
+		}
 
 	}
 	

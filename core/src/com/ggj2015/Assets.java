@@ -22,6 +22,7 @@ public class Assets {
 	
 	public static Texture knifeTexture;
 	public static BitmapFont font;
+	public static BitmapFont fontSmall;
 	
 	public static Animation walkingRightAnim;
 	public static Animation walkingLeftAnim;
@@ -71,6 +72,8 @@ public class Assets {
 		FreeTypeFontParameter parameter = new FreeTypeFontParameter();
 		parameter.size = 64;
 		font = generator.generateFont(parameter);
+		parameter.size = 48;
+		fontSmall = generator.generateFont(parameter);
 		generator.dispose();
 		
 		walkingRightAnim = new Animation(0.08f, playerWalkingRight);

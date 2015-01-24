@@ -1,8 +1,6 @@
 package com.ggj2015.model;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.utils.Timer;
-import com.badlogic.gdx.utils.Timer.Task;
 import com.ggj2015.Assets;
 
 public class Knife {

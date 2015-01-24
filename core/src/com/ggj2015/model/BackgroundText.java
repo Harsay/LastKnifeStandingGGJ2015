@@ -14,8 +14,8 @@ public class BackgroundText {
 	}
 	
 	public void draw(SpriteBatch batch) {
-		TextBounds bounds = Assets.font.getMultiLineBounds(text);
-		Assets.font.drawMultiLine(batch, text, MyGame.WIDTH/2-bounds.width/2, MyGame.HEIGHT/2+bounds.height/2);		
+		TextBounds bounds = Assets.fontSmall.getMultiLineBounds(text);
+		Assets.fontSmall.drawMultiLine(batch, text, MyGame.WIDTH/2-bounds.width/2, MyGame.HEIGHT/2+bounds.height/2);		
 	}
 
 }

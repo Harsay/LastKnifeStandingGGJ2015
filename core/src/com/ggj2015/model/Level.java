@@ -12,6 +12,8 @@ public class Level {
 
 	private List<Player> players;
 	
+	public int[] playerWins = { 0, 0, 0, 0 };
+	
 	private float width;
 	private float height;
 	
@@ -22,9 +24,10 @@ public class Level {
 	public int countdown = 4;
 	public boolean finished = false;
 	
+	public int maxSpawns = 3;
+	
 	public GameColors gameColors;
 	public BackgroundText bgText;
-
 	
 	public Level(int playerCount){
 		players = new ArrayList<Player>();
@@ -35,7 +38,6 @@ public class Level {
 		gameColors = new GameColors();
 		bgText = new BackgroundText();
 		
-						
 		spawnPlayers(playerCount);
 		spawnKnife();		
 	}
@@ -46,6 +48,7 @@ public class Level {
 	
 	public void spawnPlayers(int playerCount) {
 		deadCount = 0;
+		maxSpawns--;
 		players.clear();
 		for(int i = 0; i < playerCount; i++){	
 			Player player = null;
@@ -63,7 +66,7 @@ public class Level {
 				countdown--;
 				bgText.text = ""+countdown;
 				if(countdown == 0) {
-					bgText.text = "what we\ndo now";
+					bgText.text = "what do\nwe do now";
 					Renderer.glow(0.1f);
 				}
 			}

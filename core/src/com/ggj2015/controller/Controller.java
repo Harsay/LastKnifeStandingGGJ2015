@@ -8,10 +8,11 @@ import com.ggj2015.model.Level;
 import com.ggj2015.model.Player;
 import com.ggj2015.view.Renderer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Controller {
 	
-	//todo: bug, zly sprite po wyjeciu noza
-
 	private Level level;
 	
 	public Controller(Level level){
@@ -20,6 +21,25 @@ public class Controller {
 	
 	public void update(float delta){
 		Knife k = level.getKnife();
+		
+		if(level.maxSpawns == 0) {
+			level.bgText.text = "GAME OVER\n\n";
+			// dziadostwo
+			int m = Math.max(Math.max(level.playerWins[0], level.playerWins[1]), Math.max(level.playerWins[2], level.playerWins[3]));
+			List<Integer> winners = new ArrayList<Integer>();
+			for(int x=0; x<level.getPlayers().size(); x++) {
+				level.bgText.text += "P"+Integer.toString(x+1)+" has "+level.playerWins[x] + " points\n";
+				if(level.playerWins[x] == m) winners.add(x+1);
+			}
+			if(winners.size() == 1) {
+				level.bgText.text += "\nP"+winners.get(0)+" is the winner";
+			} else {
+				level.bgText.text += "\n";
+				for(int i=0;  i<winners.size(); i++) level.bgText.text += "P"+winners.get(i)+" ";
+				level.bgText.text += " ex aequo";
+			}
+			return;
+		}
 		
 		for(Player p : level.getPlayers()){
 			if(p.alive) {
@@ -55,8 +75,11 @@ public class Controller {
 						if(level.deadCount == level.getPlayers().size()-1) {
 							level.finished = true;
 							for(int i=0; i<level.getPlayers().size(); i++) {
-								if(level.getPlayers().get(i).alive) level.winner = i+1;
-								level.bgText.text = "Player "+level.winner+" wins";
+								if(level.getPlayers().get(i).alive) {
+									level.winner = i+1;
+									level.playerWins[i]++;
+									level.bgText.text = "Player "+level.winner+" wins";
+								}
 							}
 							Timer.schedule(new Task() {
 
