@@ -1,5 +1,6 @@
 package com.ggj2015.model;
 
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
 import com.ggj2015.Assets;
@@ -7,6 +8,8 @@ import com.ggj2015.Assets;
 public class Player {
 
 	private Sprite sprite;
+	public Animation animation;
+	public float animTime;
 	
 	private float x;
 	private float y;
@@ -24,8 +27,9 @@ public class Player {
 	public Player(float x, float y) {
 		this.x = x;
 		this.y = y;
-		sprite = new Sprite(Assets.playerAlive);
-		sprite.setPosition(x, y);		
+		animation = new Animation(0.08f, Assets.playerWalkingRight);
+		sprite = new Sprite(Assets.playerWalkingRight[0]);
+		sprite.setPosition(x, y);	
 	}
 	
 	public boolean collides(Knife knife) {
@@ -40,6 +44,13 @@ public class Player {
 		Rectangle playerRect = new Rectangle(x, y, width, height);
 		Rectangle otherRect = new Rectangle(other.getX(), other.getY(), other.getWidth(), other.getHeight());
 		return playerRect.overlaps(otherRect);
+	}
+	
+	public void setAnimation(Animation anim) {
+		if(anim != this.animation) {
+			this.animation = anim;
+			animTime = 0;
+		}
 	}
 	
 	public Sprite getSprite() {

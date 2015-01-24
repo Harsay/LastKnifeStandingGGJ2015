@@ -23,7 +23,20 @@ public class Level {
 		
 		width = MyGame.WIDTH;
 		height = MyGame.HEIGHT;
-				
+						
+		spawnPlayers(playerCount);
+		spawnKnife();
+		//knife.setOwner(players.get(0));
+		
+	}
+	
+	public void spawnKnife() {
+		knife = new Knife(width / 2-45, height / 2-45);
+	}
+	
+	public void spawnPlayers(int playerCount) {
+		deadCount = 0;
+		players.clear();
 		for(int i = 0; i < playerCount; i++){	
 			Player player = null;
 			if(i == 0) player = new Player(0, 0);
@@ -32,10 +45,6 @@ public class Level {
 			else if(i == 3) player = new Player(width, height);
 			players.add(player);
 		}
-
-		knife = new Knife(width / 2-45, height / 2-45);
-		//knife.setOwner(players.get(0));
-		
 	}
 	
 	public Knife getKnife(){
