@@ -1,5 +1,6 @@
 package com.ggj2015.controller;
 
+import com.badlogic.gdx.Gdx;
 import com.ggj2015.model.Knife;
 import com.ggj2015.model.Level;
 import com.ggj2015.model.Player;
@@ -19,7 +20,6 @@ public class Controller {
 			if(p.alive) {
 				p.setX(p.getX()+p.getVelX()*delta);
 				p.setY(p.getY()+p.getVelY()*delta);
-				//System.out.println(p.getDir());
 				if(p.getX() < 0) p.setX(0);
 				else if(p.getX()+p.getWidth() > level.getWidth()) p.setX(level.getWidth()-p.getWidth());
 				
@@ -31,16 +31,19 @@ public class Controller {
 					else {
 						k.setOwner(p);
 						p.alive = false;
+						level.deadCount++;
+						if(level.deadCount == level.getPlayers().size()) Gdx.app.exit();
 					}
 				}
 				
 				// Checking collision with possible dead player.
 				for(Player o : level.getPlayers()) {
 					if(o.alive || o == p) continue;
-					if(p.collides(o) && p.tryingToPickUp) k.setOwner(p);
+					if(p.collides(o) && p.tryingToPickUp) {
+						k.setOwner(p);
+						p.tryingToPickUp = false;
+					}
 				}
-				
-				
 			}
 		}
 
@@ -65,8 +68,8 @@ public class Controller {
 		if(level.getPlayers().size() >= player+1){
 			Player p = level.getPlayers().get(player);
 			
-			
-			if(boolset[4]){
+			//todo: can throw even dead
+			if(boolset[4] && p.alive){
 				level.getKnife().throwIt();
 			}
 			
