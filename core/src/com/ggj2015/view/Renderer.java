@@ -4,10 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.BitmapFont.TextBounds;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.badlogic.gdx.utils.Timer;
+import com.badlogic.gdx.utils.Timer.Task;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.ggj2015.Assets;
@@ -24,6 +25,7 @@ public class Renderer {
 	private Viewport viewport;
 	private GameColors gameColors;
 	private BackgroundText bgText;
+	private static Color foregroundColor;
 
 
 	public Renderer(Level level){
@@ -33,6 +35,8 @@ public class Renderer {
 		camera.setToOrtho(false, MyGame.WIDTH, MyGame.HEIGHT);
 		gameColors = level.gameColors;
 		bgText = level.bgText;
+		foregroundColor = new Color(1, 1, 1, 0);
+		glow(0.3f);
 	}
 	
 	public void render(SpriteBatch batch, ShapeRenderer shapeRenderer){
@@ -61,6 +65,27 @@ public class Renderer {
 			level.getKnife().getSprite().draw(batch);
 		}
 		batch.end();
+		
+		Gdx.gl.glEnable(GL20.GL_BLEND);
+	    Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+        shapeRenderer.begin(ShapeType.Filled);
+        shapeRenderer.setColor(foregroundColor);
+        shapeRenderer.rect(0, 0, level.getWidth(), level.getHeight());
+        shapeRenderer.end();
+	    Gdx.gl.glDisable(GL20.GL_BLEND);
+
+	}
+	
+	public static void glow(float t) {
+		foregroundColor.a = 1;
+		Timer.schedule(new Task() {
+
+			@Override
+			public void run() {
+				foregroundColor.a = 0;
+			}
+			
+		}, t);
 	}
 	
 	public static Color createColor(int r, int g, int b, int a) {

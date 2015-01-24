@@ -6,6 +6,7 @@ import com.ggj2015.Assets;
 import com.ggj2015.model.Knife;
 import com.ggj2015.model.Level;
 import com.ggj2015.model.Player;
+import com.ggj2015.view.Renderer;
 
 public class Controller {
 	
@@ -65,6 +66,7 @@ public class Controller {
 									level.spawnPlayers(level.deadCount+1);
 									level.spawnKnife();
 									level.gameColors.setColors();
+									Renderer.glow(0.1f);
 								}
 								
 							}, 3.5f);

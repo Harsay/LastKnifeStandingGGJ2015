@@ -6,6 +6,7 @@ import java.util.List;
 import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.Timer.Task;
 import com.ggj2015.MyGame;
+import com.ggj2015.view.Renderer;
 
 public class Level {
 
@@ -36,9 +37,7 @@ public class Level {
 		
 						
 		spawnPlayers(playerCount);
-		spawnKnife();
-		//knife.setOwner(players.get(0));
-		
+		spawnKnife();		
 	}
 	
 	public void spawnKnife() {
@@ -65,6 +64,7 @@ public class Level {
 				bgText.text = ""+countdown;
 				if(countdown == 0) {
 					bgText.text = "what we\ndo now";
+					Renderer.glow(0.1f);
 				}
 			}
 			
