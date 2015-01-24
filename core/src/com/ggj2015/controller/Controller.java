@@ -38,6 +38,9 @@ public class Controller {
 					}
 					else {
 						k.setOwner(p);
+						k.setVelX(0);
+						k.setVelY(0);
+						k.timeInAir = 0;
 						p.alive = false;
 						p.getSprite().setRegion(Assets.playerStabbed);
 						level.deadCount++;
@@ -103,6 +106,12 @@ public class Controller {
 			k.setVelX(k.getVelX()*k.getFriction());
 			k.setVelY(k.getVelY()*k.getFriction());
 			if(k.getVelY() != 0 || k.getVelX() != 0) k.getSprite().rotate(720*delta);
+			k.timeInAir += delta;
+			if(k.timeInAir >= k.timeToStop) {
+				k.timeInAir = 0;
+				k.setVelX(0);
+				k.setVelY(0);
+			}
 		}
 		
 		if(k.getX() > level.getWidth()) k.setX(-k.getWidth());

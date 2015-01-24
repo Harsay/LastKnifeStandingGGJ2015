@@ -16,6 +16,9 @@ public class Knife {
 	
 	private float velAtStart = 1500;
 	
+	public float timeToStop = 1.0f;
+	public float timeInAir = 0;
+	
 	private Player owner;
 	
 	public Knife(float x, float y){
@@ -76,15 +79,6 @@ public class Knife {
 			
 			owner = null;
 			
-			Timer.schedule(new Task() {
-
-				@Override
-				public void run() {
-					velX = 0;
-					velY = 0;
-				}
-				
-			}, 1.0f);
 		}
 	}
 	
