@@ -61,6 +61,14 @@ public class Player {
 	public float getX() {
 		return x;
 	}
+	
+	public float getCenterX() {
+		return x+width/2;
+	}
+	
+	public float getCenterY() {
+		return y+height/2;
+	}
 
 	public void setX(float x) {
 		this.x = x;

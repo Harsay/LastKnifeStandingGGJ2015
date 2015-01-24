@@ -33,7 +33,15 @@ public class Controller {
 		}else{
 			k.setX(k.getX()+k.getVelX()*delta);
 			k.setY(k.getY()+k.getVelY()*delta);
+			k.setVelX(k.getVelX()*k.getFriction());
+			k.setVelY(k.getVelY()*k.getFriction());
 		}
+		
+		if(k.getX() > level.getWidth()) k.setX(-k.getWidth());
+		else if(k.getX()+k.getWidth() < 0) k.setX(level.getWidth());
+		
+		if(k.getY() > level.getHeight()) k.setY(-k.getHeight());
+		else if(k.getY()+k.getHeight() < 0) k.setY(level.getHeight());
 		
 	}
 	

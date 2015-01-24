@@ -9,8 +9,10 @@ public class Knife {
 	
 	private float x, y;
 	private float velX, velY;
+	private float width, height;
+	private float friction = 0.99f;
 	
-	private float velAtStart = 100;
+	private float velAtStart = 1000;
 	
 	private Player owner;
 	
@@ -18,6 +20,8 @@ public class Knife {
 		this.x = x;
 		this.y = y;
 		sprite = new Sprite(Assets.knifeTexture);
+		width = sprite.getWidth();
+		height = sprite.getHeight();
 	}
 	
 	public void setOwner(Player owner){
@@ -28,38 +32,75 @@ public class Knife {
 		if(owner != null){
 			int dir = owner.getDir();
 			
+			setX(owner.getCenterX());
+			setY(owner.getCenterY());
+			
 			if(dir == 0){
 				velX = -(float) (velAtStart / Math.sqrt(2));
 				velY = (float) (velAtStart / Math.sqrt(2));
+				sprite.setRotation(-45);
 			}else if(dir == 1){
 				velX = 0;
 				velY = velAtStart;
+				sprite.setRotation(-90);
 			}else if(dir == 2){
 				velX = (float) (velAtStart / Math.sqrt(2));
 				velY = (float) (velAtStart / Math.sqrt(2));
+				sprite.setRotation(-135);
 			}else if(dir == 3){
 				velX = -velAtStart;
 				velY = 0;
+				sprite.setRotation(0);
 			}else if(dir == 4){
 				// CENTER
 			}else if(dir == 5){
 				velX = velAtStart;
 				velY = 0;
+				sprite.setRotation(180);
 			}else if(dir == 6){
 				velX = -(float) (velAtStart / Math.sqrt(2));
 				velY = -(float) (velAtStart / Math.sqrt(2));
+				sprite.setRotation(45);
 			}else if(dir == 7){
 				velX = 0;
 				velY = -velAtStart;
+				sprite.setRotation(90);
 			}else if(dir == 8){
 				velX = (float) (velAtStart / Math.sqrt(2));
 				velY = -(float) (velAtStart / Math.sqrt(2));
+				sprite.setRotation(135);
 			}
 			
 			owner = null;
 		}
 	}
 	
+	
+	
+	public float getFriction() {
+		return friction;
+	}
+
+	public void setFriction(float friction) {
+		this.friction = friction;
+	}
+
+	public float getWidth() {
+		return width;
+	}
+
+	public void setWidth(float width) {
+		this.width = width;
+	}
+
+	public float getHeight() {
+		return height;
+	}
+
+	public void setHeight(float height) {
+		this.height = height;
+	}
+
 	public float getX() {
 		return x;
 	}
