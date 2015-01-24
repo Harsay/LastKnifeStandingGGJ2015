@@ -68,8 +68,7 @@ public class Controller {
 		if(level.getPlayers().size() >= player+1){
 			Player p = level.getPlayers().get(player);
 			
-			//todo: can throw even dead
-			if(boolset[4] && p.alive){
+			if(boolset[4] && level.getKnife().getOwner() == p){
 				level.getKnife().throwIt();
 			}
 			
