@@ -16,6 +16,7 @@ public class Player {
 	
 	public boolean alive = true;
 	public boolean throwing = false;
+	public boolean tryingToPickUp = false;
 	
 	private float width = 80;
 	private float height = 120;
@@ -33,6 +34,12 @@ public class Player {
 		if(playerRect.overlaps(knifeRect)) return !throwing;
 		else throwing = false;
 		return false;
+	}
+	
+	public boolean collides(Player other) {
+		Rectangle playerRect = new Rectangle(x, y, width, height);
+		Rectangle otherRect = new Rectangle(other.getX(), other.getY(), other.getWidth(), other.getHeight());
+		return playerRect.overlaps(otherRect);
 	}
 	
 	public Sprite getSprite() {

@@ -33,6 +33,14 @@ public class Controller {
 						p.alive = false;
 					}
 				}
+				
+				// Checking collision with possible dead player.
+				for(Player o : level.getPlayers()) {
+					if(o.alive || o == p) continue;
+					if(p.collides(o) && p.tryingToPickUp) k.setOwner(p);
+				}
+				
+				
 			}
 		}
 
@@ -66,6 +74,7 @@ public class Controller {
 			
 			p.setVelX(0);
 			p.setVelY(0);
+			p.tryingToPickUp = false;
 			
 			if(boolset[0]){
 				p.setVelY(playerSpeed);
@@ -83,6 +92,9 @@ public class Controller {
 			if(boolset[3]){
 				p.setVelX(-playerSpeed);
 				p.setDir(3);
+			}
+			if(boolset[5]){
+				p.tryingToPickUp = true;
 			}
 			
 			if(Math.abs(p.getVelX()) > 0 && Math.abs(p.getVelY()) > 0){
