@@ -15,6 +15,8 @@ public class Level {
 	private Knife knife;
 	
 	public int deadCount = 0;
+	public int winner = 0;
+	public boolean finished = false;
 	
 	public Level(int playerCount){
 		players = new ArrayList<Player>();

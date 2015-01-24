@@ -1,6 +1,8 @@
 package com.ggj2015.controller;
 
-import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.utils.Timer;
+import com.badlogic.gdx.utils.Timer.Task;
+import com.ggj2015.Assets;
 import com.ggj2015.model.Knife;
 import com.ggj2015.model.Level;
 import com.ggj2015.model.Player;
@@ -14,6 +16,7 @@ public class Controller {
 	}
 	
 	public void update(float delta){
+		if(level.finished) return;
 		Knife k = level.getKnife();
 		
 		for(Player p : level.getPlayers()){
@@ -31,8 +34,22 @@ public class Controller {
 					else {
 						k.setOwner(p);
 						p.alive = false;
+						p.getSprite().setRegion(Assets.playerStabbed);
 						level.deadCount++;
-						if(level.deadCount == level.getPlayers().size()) Gdx.app.exit();
+						if(level.deadCount == level.getPlayers().size()-1) {
+							level.finished = true;
+							for(int i=0; i<level.getPlayers().size(); i++) {
+								if(level.getPlayers().get(i).alive) level.winner = i+1;
+							}
+							Timer.schedule(new Task() {
+
+								@Override
+								public void run() {
+									level.finished = false;
+								}
+								
+							}, 2.0f);
+						}
 					}
 				}
 				
@@ -42,6 +59,7 @@ public class Controller {
 					if(p.collides(o) && p.tryingToPickUp) {
 						k.setOwner(p);
 						p.tryingToPickUp = false;
+						o.getSprite().setRegion(Assets.playerDead);
 					}
 				}
 			}

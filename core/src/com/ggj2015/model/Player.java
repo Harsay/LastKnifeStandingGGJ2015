@@ -24,7 +24,7 @@ public class Player {
 	public Player(float x, float y) {
 		this.x = x;
 		this.y = y;
-		sprite = new Sprite(Assets.playerTexture);
+		sprite = new Sprite(Assets.playerAlive);
 		sprite.setPosition(x, y);		
 	}
 	
