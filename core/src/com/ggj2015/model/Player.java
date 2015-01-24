@@ -1,6 +1,7 @@
 package com.ggj2015.model;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Rectangle;
 import com.ggj2015.Assets;
 
 public class Player {
@@ -13,6 +14,8 @@ public class Player {
 	private float velY = 0;
 	private int dir = 0;
 	
+	public boolean throwing = false;
+	
 	private float width = 80;
 	private float height = 120;
 	
@@ -22,9 +25,16 @@ public class Player {
 		sprite = new Sprite(Assets.playerTexture);
 		sprite.setPosition(x, y);
 		
-		System.out.println(x + ", " + y);
+		//System.out.println(x + ", " + y);
 	}
 	
+	public boolean collides(Knife knife) {
+		Rectangle playerRect = new Rectangle(x, y, width, height);
+		Rectangle knifeRect = new Rectangle(knife.getX(), knife.getY(), knife.getWidth(), knife.getHeight());
+		if(playerRect.overlaps(knifeRect)) return !throwing;
+		else throwing = false;
+		return false;
+	}
 	
 	public Sprite getSprite() {
 		return sprite;

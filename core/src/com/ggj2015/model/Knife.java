@@ -1,6 +1,8 @@
 package com.ggj2015.model;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.utils.Timer;
+import com.badlogic.gdx.utils.Timer.Task;
 import com.ggj2015.Assets;
 
 public class Knife {
@@ -10,7 +12,7 @@ public class Knife {
 	private float x, y;
 	private float velX, velY;
 	private float width, height;
-	private float friction = 0.99f;
+	private float friction = 0.98f;
 	
 	private float velAtStart = 1000;
 	
@@ -31,6 +33,7 @@ public class Knife {
 	public void throwIt(){
 		if(owner != null){
 			int dir = owner.getDir();
+			owner.throwing = true;
 			
 			setX(owner.getCenterX());
 			setY(owner.getCenterY());
@@ -72,6 +75,16 @@ public class Knife {
 			}
 			
 			owner = null;
+			
+			Timer.schedule(new Task() {
+
+				@Override
+				public void run() {
+					velX = 0;
+					velY = 0;
+				}
+				
+			}, 1.0f);
 		}
 	}
 	
