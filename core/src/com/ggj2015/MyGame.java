@@ -6,6 +6,15 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class MyGame extends Game {
+	
+	/*
+	 * todo:
+	 * - OBSLUGA GAMEPADOW
+	 * - SZYBKA KONFIGURACJA KLAWISZY (MIEDZY MENU A PIERWSZA GRA)
+	 * - TRZESIENIE EKRANU
+	 * - PARTICLE KREW
+	 * - DZWIEKI (SFXR), MUZYKA MOOOZE FAMI TRACKER
+	 */
 
 	private GameEngine engine;
 	private SpriteBatch batch;
