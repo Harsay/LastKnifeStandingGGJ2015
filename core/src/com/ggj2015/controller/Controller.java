@@ -32,6 +32,8 @@ public class Controller {
 				if(k.getOwner() == null && p.collides(k)) {
 					if(k.getVelX() == 0 && k.getVelY() == 0) {
 						k.setOwner(p);
+						k.setVelX(0);
+						k.setVelY(0);
 						p.getSprite().setRegion(Assets.playerWalkingRightWithKnife[0]);
 					}
 					else {
@@ -51,6 +53,7 @@ public class Controller {
 									level.finished = false;
 									level.spawnPlayers(level.deadCount+1);
 									level.spawnKnife();
+									level.gameColors.setColors();
 								}
 								
 							}, 3.5f);
@@ -70,7 +73,6 @@ public class Controller {
 				}
 				
 				// animation
-				
 				if(p.alive) {
 					if(p.getVelX() > 0) {
 						if(k.getOwner() != p) p.setAnimation(Assets.walkingRightAnim);
@@ -100,6 +102,7 @@ public class Controller {
 			k.setY(k.getY()+k.getVelY()*delta);
 			k.setVelX(k.getVelX()*k.getFriction());
 			k.setVelY(k.getVelY()*k.getFriction());
+			if(k.getVelY() != 0 || k.getVelX() != 0) k.getSprite().rotate(720*delta);
 		}
 		
 		if(k.getX() > level.getWidth()) k.setX(-k.getWidth());

@@ -12,6 +12,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.ggj2015.Assets;
 import com.ggj2015.MyGame;
+import com.ggj2015.model.GameColors;
 import com.ggj2015.model.Level;
 import com.ggj2015.model.Player;
 
@@ -20,12 +21,15 @@ public class Renderer {
 	private Level level;
 	private OrthographicCamera camera;
 	private Viewport viewport;
+	private GameColors gameColors;
+
 
 	public Renderer(Level level){
 		this.level = level;
 		camera = new OrthographicCamera();
 		viewport = new FitViewport(MyGame.WIDTH, MyGame.HEIGHT, camera);
 		camera.setToOrtho(false, MyGame.WIDTH, MyGame.HEIGHT);
+		gameColors = level.gameColors;
 	}
 	
 	public void render(SpriteBatch batch, ShapeRenderer shapeRenderer){
@@ -36,27 +40,26 @@ public class Renderer {
         
         shapeRenderer.setProjectionMatrix(camera.combined);
         shapeRenderer.begin(ShapeType.Filled);
-        shapeRenderer.setColor(createColor(127,30,3, 255));
+        shapeRenderer.setColor(gameColors.getBgColor());
         shapeRenderer.rect(0, 0, level.getWidth(), level.getHeight());
         shapeRenderer.end();
         
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
 		if(level.finished) {
-			Assets.font.setColor(createColor(204, 49, 5, 255));
+			Assets.font.setColor(gameColors.getTxtColor());
 			TextBounds bounds = Assets.font.getBounds("Player "+level.winner+" wins");
 			Assets.font.draw(batch, "Player "+level.winner+" wins", MyGame.WIDTH/2-bounds.width/2, MyGame.HEIGHT/2+bounds.height/2);
 		}
 		for(Player p : level.getPlayers()) {
-			p.getSprite().setColor(createColor(255, 61, 7, 255));
+			p.getSprite().setColor(gameColors.getPlrColor());
 			p.getSprite().draw(batch);
 		}
 		if(level.getKnife() != null && level.getKnife().getOwner() == null){
-			level.getKnife().getSprite().setColor(createColor(255, 61, 7, 255));
+			level.getKnife().getSprite().setColor(gameColors.getPlrColor());
 			level.getKnife().getSprite().draw(batch);
 		}
 		batch.end();
-		
 	}
 	
 	public static Color createColor(int r, int g, int b, int a) {

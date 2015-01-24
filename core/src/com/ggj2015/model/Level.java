@@ -18,11 +18,16 @@ public class Level {
 	public int winner = 0;
 	public boolean finished = false;
 	
+	public GameColors gameColors;
+
+	
 	public Level(int playerCount){
 		players = new ArrayList<Player>();
 		
 		width = MyGame.WIDTH;
 		height = MyGame.HEIGHT;
+		
+		gameColors = new GameColors();
 						
 		spawnPlayers(playerCount);
 		spawnKnife();
