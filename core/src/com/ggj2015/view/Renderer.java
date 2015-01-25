@@ -97,7 +97,17 @@ public class Renderer {
 			if(level.maxSpawns > 0) {
 				for(Player p : level.getPlayers()) {
 					p.getSprite().setColor(gameColors.getPlrColor());
+					Sprite pointerSprite = new Sprite(Assets.pointer);
+					pointerSprite.setPosition(p.getCenterX()-pointerSprite.getWidth()/2, p.getCenterY()+p.getHeight()/2);
+					pointerSprite.setColor(gameColors.getPlrColor());
+					pointerSprite.draw(batch);
+					String todraw = "";
+					if(p.alive && level.getKnife().getOwner() == p) todraw = "K";
+					else todraw = ""+p.number;
+					TextBounds bounds = Assets.fontMoreSmaller.getBounds(todraw);
+					Assets.fontMoreSmaller.draw(batch, todraw, pointerSprite.getX()+pointerSprite.getWidth()/2-bounds.width/2, pointerSprite.getY()+bounds.height+10);
 					p.getSprite().draw(batch);
+					
 				}
 				if(level.getKnife() != null && level.getKnife().getOwner() == null){
 					level.getKnife().getSprite().setColor(gameColors.getPlrColor());

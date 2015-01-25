@@ -70,12 +70,12 @@ public class GameController {
 				
 				if(k.getOwner() == null && p.collides(k)) {
 					if(k.getVelX() == 0 && k.getVelY() == 0) {
-						k.setOwner(p);
-						k.setVelX(0);
-						k.setVelY(0);
-						Assets.pickup.play();
-						p.getSprite().setRegion(Assets.playerWalkingRightWithKnife[0]);
-						level.bgText.text = "Player "+p.number+" \npicked up\nthe knife";
+						if(p.tryingToPickUp) {
+							k.setOwner(p);
+							Assets.pickup.play();
+							p.getSprite().setRegion(Assets.playerWalkingRightWithKnife[0]);
+							level.bgText.text = "Player "+p.number+" \npicked up\nthe knife";
+						}
 					}
 					else {
 						p.deadLeft = k.getX() <= p.getX()+p.getWidth()/2;
@@ -213,7 +213,7 @@ public class GameController {
 				p.setDir(3);
 			}
 			if(boolset[5]){
-				p.tryingToPickUp = true;
+				if(level.getKnife().getOwner() != p) p.tryingToPickUp = true;
 			}
 			
 			if(Math.abs(p.getVelX()) > 0 && Math.abs(p.getVelY()) > 0){

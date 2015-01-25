@@ -24,8 +24,8 @@ public class Player {
 	public boolean tryingToPickUp = false;
 	public boolean deadLeft = false;
 	
-	private float width = 80;
-	private float height = 120;
+	private float width;
+	private float height;
 	
 	public Player(float x, float y, int number) {
 		this.x = x;
@@ -34,6 +34,8 @@ public class Player {
 		animation = new Animation(0.08f, Assets.playerWalkingRight);
 		sprite = new Sprite(Assets.playerWalkingRight[0]);
 		sprite.setPosition(x, y);	
+		width = sprite.getWidth();
+		height = sprite.getHeight();
 	}
 	
 	public boolean collides(Knife knife) {
@@ -62,6 +64,8 @@ public class Player {
 	}
 
 	public void setSprite(Sprite sprite) {
+		width = sprite.getWidth();
+		height = sprite.getHeight();
 		this.sprite = sprite;
 	}
 

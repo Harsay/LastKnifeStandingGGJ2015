@@ -5,6 +5,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
@@ -25,6 +26,7 @@ public class Assets {
 	public static BitmapFont font;
 	public static BitmapFont fontSmall;
 	public static BitmapFont fontSmaller;
+	public static BitmapFont fontMoreSmaller;
 
 	public static Animation walkingRightAnim;
 	public static Animation walkingLeftAnim;
@@ -37,11 +39,15 @@ public class Assets {
 	public static Sound start;
 	public static Sound throwKnife;
 	
+	public static TextureRegion pointer;
+	
 	public static Sound getSound(String name) {
 		return Gdx.audio.newSound(Gdx.files.internal(name+".wav"));
 	}
 	
 	public static void loadGraphics() {
+		
+		pointer = loadTexture("znacznik");
 		
 		beep = getSound("beep");
 		hit = getSound("hit");
@@ -95,6 +101,8 @@ public class Assets {
 		fontSmall = generator.generateFont(parameter);
 		parameter.size = 24;
 		fontSmaller = generator.generateFont(parameter);
+		parameter.size = 12;
+		fontMoreSmaller = generator.generateFont(parameter);
 		generator.dispose();
 		
 		walkingRightAnim = new Animation(0.08f, playerWalkingRight);
