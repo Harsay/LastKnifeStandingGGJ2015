@@ -1,5 +1,7 @@
 package com.ggj2015.view;
 
+import java.util.Random;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -30,7 +32,10 @@ public class Renderer {
 	private static Color foregroundColor;
 	
 	private Sprite menuSprite;
+	
+	private static boolean shaking = false;
 
+	Random rand = new Random();
 
 	public Renderer(Level level){
 		this.level = level;
@@ -45,6 +50,16 @@ public class Renderer {
 	}
 	
 	public void render(SpriteBatch batch, ShapeRenderer shapeRenderer){
+		
+		if(shaking) {
+			camera.position.x =  MyGame.WIDTH/2+rand.nextFloat()*20f*(rand.nextInt(3) - 1);
+			camera.position.y =  MyGame.HEIGHT/2+rand.nextFloat()*20f*(rand.nextInt(3) - 1);
+		} 
+		else {
+			camera.position.x = MyGame.WIDTH/2;
+			camera.position.y = MyGame.HEIGHT/2;
+		}
+		
 		camera.update();
 		viewport.update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		Gdx.gl.glClearColor(0, 0, 0, 0);
@@ -114,6 +129,18 @@ public class Renderer {
 			}
 			
 		}, t);
+	}
+	
+	public static void shake() {
+		shaking = true;
+		Timer.schedule(new Task() {
+
+			@Override
+			public void run() {
+				shaking = false;
+			}
+			
+		}, 0.3f);
 	}
 	
 	public static Color createColor(int r, int g, int b, int a) {

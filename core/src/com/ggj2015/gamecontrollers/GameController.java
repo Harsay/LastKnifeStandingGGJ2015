@@ -1,4 +1,4 @@
-package com.ggj2015.controller;
+package com.ggj2015.gamecontrollers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,11 +14,11 @@ import com.ggj2015.model.Level;
 import com.ggj2015.model.Player;
 import com.ggj2015.view.Renderer;
 
-public class Controller {
+public class GameController {
 	
 	private Level level;
 	
-	public Controller(Level level){
+	public GameController(Level level){
 		this.level = level;
 	}
 	
@@ -86,6 +86,9 @@ public class Controller {
 						k.timeInAir = 0;
 						p.alive = false;
 						level.bgText.text = "Player "+p.number+" \nhas been \nkilled";
+						Renderer.glow(0.05f);
+						Renderer.shake();
+						level.gameColors.setColors();
 						level.deadCount++;
 						if(level.deadCount == level.getPlayers().size()-1) {
 							level.finished = true;
@@ -115,7 +118,7 @@ public class Controller {
 				// Checking collision with possible dead player.
 				for(Player o : level.getPlayers()) {
 					if(o.alive || o == p) continue;
-					if(p.collides(o) && p.tryingToPickUp) {
+					if(p.collides(o) && p.tryingToPickUp && k.getOwner() != null && !level.finished) {
 						k.setOwner(p);
 						p.getSprite().setRegion(Assets.playerWalkingRightWithKnife[0]);
 						p.tryingToPickUp = false;
