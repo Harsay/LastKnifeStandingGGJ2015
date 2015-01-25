@@ -19,12 +19,12 @@ public class GameEngine {
 	private Renderer renderer;
 	
 	private int[][] keysets = {{Keys.UP, Keys.RIGHT, Keys.DOWN, Keys.LEFT, Keys.N, Keys.M},
-			{Keys.W, Keys.D, Keys.S, Keys.A, Keys.J, Keys.K},
+			{Keys.W, Keys.D, Keys.S, Keys.A, Keys.G, Keys.H},
 			{0, 0, 0, 0, 0, 1},
 			{0, 0, 0, 0, 0, 1}			
 	};
 	
-	private int[] keysetsType = {1, 1, 2, 0}; // 0 undef, 1 keyboard, 2 gamepad
+	private int[] keysetsType = {1, 1, 2, 2}; // 0 undef, 1 keyboard, 2 gamepad
 	
 	private boolean[][] gamePadsDpad = new boolean[4][4];
 	
@@ -85,10 +85,12 @@ public class GameEngine {
 			}	
 			else if(keysetsType[j] == 2) {
 				Controller c = gamePads[gamePadsUpdated];
-				boolean[] dpad = gamePadsDpad[gamePadsUpdated];
-				for(int x=0; x<dpad.length; x++) boolset[x] = dpad[x];
-				for(int x=4; x<boolset.length; x++) boolset[x] = c.getButton(keysets[j][x]);
-				gamePadsUpdated++;
+				if(c != null) {
+					boolean[] dpad = gamePadsDpad[gamePadsUpdated];
+					for(int x=0; x<dpad.length; x++) boolset[x] = dpad[x];
+					for(int x=4; x<boolset.length; x++) boolset[x] = c.getButton(keysets[j][x]);
+					gamePadsUpdated++;
+				}
 			}
 			
 			controller.action(j, boolset);

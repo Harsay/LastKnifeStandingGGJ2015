@@ -14,7 +14,7 @@ public class Knife {
 	
 	private float velAtStart = 1500;
 	
-	public float timeToStop = 1.0f;
+	public float timeToStop = 0.5f;
 	public float timeInAir = 0;
 	
 	private Player owner;

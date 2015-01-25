@@ -120,7 +120,7 @@ public class GameController {
 				// Checking collision with possible dead player.
 				for(Player o : level.getPlayers()) {
 					if(o.alive || o == p) continue;
-					if(p.collides(o) && p.tryingToPickUp && k.getOwner() != null && !level.finished) {
+					if(p.collides(o) && p.tryingToPickUp && k.getOwner() != null && !k.getOwner().alive && !level.finished) {
 						k.setOwner(p);
 						p.getSprite().setRegion(Assets.playerWalkingRightWithKnife[0]);
 						p.tryingToPickUp = false;
