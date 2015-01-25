@@ -28,14 +28,16 @@ public class GameEngine {
 	
 	private boolean[][] gamePadsDpad = new boolean[4][4];
 	
-	public Controller[] gamePads = new Controller[4];
+	public Controller[] gamePads = new Controller[2];
 	
 	public GameEngine(){
+		int playersNum = 2;
 		
 		for(int i=0; i<Controllers.getControllers().size; i++) {
 			if(i+1 > gamePads.length) break;
 			gamePads[i] = Controllers.getControllers().get(i);
 			System.out.println("Added gamepad: "+gamePads[i].getName());
+			playersNum++;
 			gamePads[i].addListener(new CustomControllerAdapter(i) {
 				@Override
 				public boolean povMoved (Controller controller, int povIndex, PovDirection value) {
@@ -64,8 +66,8 @@ public class GameEngine {
 				}
 			 });
 		}
-		
-		level = new Level(4);
+				
+		level = new Level(playersNum);
 		
 		controller = new GameController(level);
 		renderer = new Renderer(level);
