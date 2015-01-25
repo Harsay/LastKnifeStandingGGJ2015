@@ -9,11 +9,7 @@ public class MyGame extends Game {
 	
 	/*
 	 * todo:
-	 * - OBSLUGA GAMEPADOW
-	 * - SZYBKA KONFIGURACJA KLAWISZY (MIEDZY MENU A PIERWSZA GRA)
-	 * - TRZESIENIE EKRANU
-	 * - PARTICLE KREW
-	 * - DZWIEKI (SFXR), MUZYKA MOOOZE FAMI TRACKER
+	 *  - znaczniki
 	 */
 
 	private GameEngine engine;

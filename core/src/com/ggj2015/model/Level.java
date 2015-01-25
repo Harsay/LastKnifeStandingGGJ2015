@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.Timer.Task;
+import com.ggj2015.Assets;
 import com.ggj2015.MyGame;
 import com.ggj2015.view.Renderer;
 
@@ -67,6 +68,9 @@ public class Level {
 				if(countdown == 0) {
 					bgText.text = "what do\nwe do now";
 					Renderer.glow(0.1f);
+					Assets.start.play();
+				} else {
+					Assets.beep.play();
 				}
 			}
 			

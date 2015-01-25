@@ -1,6 +1,7 @@
 package com.ggj2015;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -30,7 +31,24 @@ public class Assets {
 	public static Animation walkingRightWithKnifeAnim;
 	public static Animation walkingLeftWithKnifeAnim;
 	
+	public static Sound beep;
+	public static Sound hit;
+	public static Sound pickup;
+	public static Sound start;
+	public static Sound throwKnife;
+	
+	public static Sound getSound(String name) {
+		return Gdx.audio.newSound(Gdx.files.internal(name+".wav"));
+	}
+	
 	public static void loadGraphics() {
+		
+		beep = getSound("beep");
+		hit = getSound("hit");
+		pickup = getSound("pickup");
+		start = getSound("start");
+		throwKnife = getSound("throw");
+		
 		playerWalkingRight[0] = loadTexture("run_1");
 		playerWalkingRight[1] = loadTexture("run_2");
 		playerWalkingRight[2] = loadTexture("run_1");

@@ -73,6 +73,7 @@ public class GameController {
 						k.setOwner(p);
 						k.setVelX(0);
 						k.setVelY(0);
+						Assets.pickup.play();
 						p.getSprite().setRegion(Assets.playerWalkingRightWithKnife[0]);
 						level.bgText.text = "Player "+p.number+" \npicked up\nthe knife";
 					}
@@ -85,6 +86,7 @@ public class GameController {
 						k.setVelY(0);
 						k.timeInAir = 0;
 						p.alive = false;
+						Assets.hit.play();
 						level.bgText.text = "Player "+p.number+" \nhas been \nkilled";
 						Renderer.glow(0.05f);
 						Renderer.shake();
@@ -122,6 +124,7 @@ public class GameController {
 						k.setOwner(p);
 						p.getSprite().setRegion(Assets.playerWalkingRightWithKnife[0]);
 						p.tryingToPickUp = false;
+						Assets.pickup.play();
 						if(o.deadLeft) o.getSprite().setRegion(Assets.playerDeadLeft);
 						else o.getSprite().setRegion(Assets.playerDeadRight);
 						level.bgText.text = "Player "+p.number+" \npulled out \nthe knife";
@@ -183,6 +186,7 @@ public class GameController {
 			
 			if(boolset[4] && p.alive && !level.finished && level.getKnife().getOwner() == p){
 				level.getKnife().throwIt();
+				Assets.throwKnife.play();
 			}
 			
 			float playerSpeed = 420f;
